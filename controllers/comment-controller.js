@@ -22,7 +22,7 @@ const commentController = {
       .catch(err => res.json(err));
   },
 
-  // remove replies
+  // add replies
   addReply({ params, body }, res) {
     Comment.findOneAndUpdate(
       { _id: params.commentId },
@@ -38,6 +38,16 @@ const commentController = {
       })
       .catch(err => res.json(err));
 
+  },
+  // remove replies
+  removeReply({ params }, res) {
+    Cpmment.findOneAndUpdate(
+      { _id: params.commentId},
+      {$pull: { replies: { replyId: params.replyId}}},
+      {new: true}
+    )
+      .then(dbPizzaData => res.json(dbPizzaData))
+      .catch(err => res.json(err));
   },
 
   // remove comment
