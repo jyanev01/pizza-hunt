@@ -1,6 +1,5 @@
 const { Schema, model, Types } = require('mongoose');
-const dateFormat = require ('../utils/dateFormat');
-
+const dateFormat = require('../utils/dateFormat');
 
 const ReplySchema = new Schema(
   {
@@ -8,7 +7,6 @@ const ReplySchema = new Schema(
     replyId: {
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId()
-    
     },
     replyBody: {
       type: String
@@ -59,6 +57,5 @@ CommentSchema.virtual('replyCount').get(function() {
 });
 
 const Comment = model('Comment', CommentSchema);
-
 
 module.exports = Comment;
